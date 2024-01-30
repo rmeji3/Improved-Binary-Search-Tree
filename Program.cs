@@ -63,9 +63,95 @@ namespace Program
             Console.WriteLine("\nDeleted " + rootNum + " from the tree, there are now: " + t.GetSize() + " nodes");
             Console.WriteLine("new root: " + t.GetRoot());
             t.PrintInOrderTree();
+            Console.WriteLine("\nNumber of trees: " + BST.GetNumTrees());
+
+            BST t2 = new BST(t);
             
+            Console.WriteLine("\nNumber of trees: " + BST.GetNumTrees());
             
+            Console.WriteLine("\nTree 1 in Order: ");
+            t.PrintTree();
+            Console.WriteLine("\nTree 2 in Order: ");
+            t2.PrintTree();
+
+            Console.WriteLine();
+            t2.DeleteNode(9);
             
+            Console.WriteLine("\nTree 1 in Order: ");
+            t.PrintTree();
+            Console.WriteLine("\nTree 2 in Order: ");
+            t2.PrintTree();
+            
+            t2.PrintPath(9);
+            t2.PrintPath(18);
+            
+            t2.DeleteNode(1);
+            t2.DeleteNode(3);
+
+            
+            t2.PrintInOrderTree();
+            List<int>rangeList1 = t2.RangeSearch(1, 3);
+            Console.WriteLine("Range List between 1 and 3: ");
+            foreach (var x in rangeList1)
+            {
+                Console.Write(x + " ");
+            }
+
+            List<int>rangeList2 = t2.RangeSearch(5, 15);
+            Console.WriteLine("Range List between 5 and 15: ");
+            foreach (var x in rangeList2)
+            {
+                Console.Write(x + " ");
+            }
+            
+            Console.WriteLine( "\ntree2 to string:\n" + t2.ToString() + "\n");
+
+            BST t3 = t.Difference(t2);
+            
+            Console.WriteLine("\ntree 1:");
+            t.PrintTree();
+            Console.WriteLine("\ntree 2:");
+            t2.PrintTree();
+            Console.WriteLine("\ntree 3 set difference:");
+            t3.PrintTree();
+            
+            BST t4 = t.Intersection(t2);
+            
+            Console.WriteLine("\ntree 1:");
+            t.PrintTree();
+            Console.WriteLine("\ntree 2:");
+            t2.PrintTree();
+            Console.WriteLine("\ntree 4 set difference:");
+            t4.PrintTree();
+            
+            BST t5 = t.Union(t2);
+            
+            Console.WriteLine("\ntree 1:");
+            t.PrintTree();
+            Console.WriteLine("\ntree 2:");
+            t2.PrintTree();
+            Console.WriteLine("\ntree 5 set union:");
+            t5.PrintTree();
+
+            BST t6 = new BST();
+            
+            Console.WriteLine();
+            t6.ImportCSV("numbers.csv");
+            
+            Console.WriteLine("\nNumber of elements in tree: " + t6.GetSize());
+            t6.PrintTree();
+            
+            t3.ExportCsv("test.csv");
+            Console.WriteLine();
+            t3.PrintTree();
+            BST t7 = new BST();
+            t7.ImportCSV("test.csv");
+            Console.WriteLine("\nNumber of elements in tree: " + t7.GetSize());
+            t7.PrintTree();
+            
+
+
+
         }
     }
 }
